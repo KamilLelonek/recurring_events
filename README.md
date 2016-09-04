@@ -22,3 +22,18 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
     end
     ```
 
+## Development
+
+To get and compile all dependencies run:
+
+    mix do deps.get, deps.compile
+
+## Database
+
+Firstly, you need to create a database. To do that, execute:
+
+    mix ecto.create
+
+Later on, you may wanna run all migrations. This can be done by:
+
+    mix ecto.migrate
