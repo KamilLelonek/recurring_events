@@ -22,8 +22,9 @@ defmodule RecurringEvents.Mixfile do
 
   defp deps() do
     [
-      {:ecto,     "~> 2.0"},
-      {:postgrex, "~> 0.11"},
+      {:ecto,        "~> 2.0"},
+      {:postgrex,    "~> 0.11"},
+      {:exnumerator, "~> 1.2"},
     ]
   end
 
@@ -31,6 +32,7 @@ defmodule RecurringEvents.Mixfile do
     ~w(
       ecto
       postgrex
+      exnumerator
     )a
   end
 
