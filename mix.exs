@@ -30,6 +30,7 @@ defmodule RecurringEvents.Mixfile do
 
   defp apps() do
     ~w(
+      logger
       ecto
       postgrex
       exnumerator
