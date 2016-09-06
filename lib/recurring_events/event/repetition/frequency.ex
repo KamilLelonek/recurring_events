@@ -8,11 +8,13 @@ defmodule RecurringEvents.Event.Repetition.Frequency do
       :yearly
     ]
 
-  def stream_of_dates(:once,     _interval, date_start, _date_end), do: [date_start]
-  def stream_of_dates(frequency,  interval, date_start,  date_end)  do
+  def stream_of_dates(frequency,  interval, date_start,  date_end,  exclusions \\ [])
+  def stream_of_dates(:once,     _interval, date_start, _date_end, _exclusions), do: [date_start]
+  def stream_of_dates(frequency,  interval, date_start,  date_end,  exclusions)  do
     date_start
     |> generate_dates(frequency, interval)
     |> pick_dates_within_range(date_end)
+    |> exclude_dates_out_of_range(exclusions)
   end
 
   defp generate_dates(date_start, frequency, interval),
@@ -23,6 +25,9 @@ defmodule RecurringEvents.Event.Repetition.Frequency do
 
   defp not_future_date?(date, boundary),
     do: Ecto.Date.compare(date, boundary) != :gt
+
+  defp exclude_dates_out_of_range(dates, exclusions),
+    do: Stream.reject(dates, &Enum.member?(exclusions, &1))
 
   defp stepper(:daily,   interval, date), do: add_days(date,   interval)
   defp stepper(:weekly,  interval, date), do: add_days(date,   interval * 7)

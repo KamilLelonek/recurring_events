@@ -37,21 +37,24 @@ defmodule RecurringEvents.Event.Repetition.FrequencyTest do
       date_start = %Ecto.Date{year: 2000, month: 1, day: 1}
       date_end   = %Ecto.Date{year: 3000, month: 1, day: 1}
 
-      assert_stream_of_dates(frequency, interval, date_start, date_end, [date_start])
+      assert_stream_of_dates(frequency, interval, date_start, date_end, [date_start], [])
+      assert_stream_of_dates(frequency, interval, date_start, date_end, [date_start], [%Ecto.Date{year: 2000, month: 1, day: 1}])
+      assert_stream_of_dates(frequency, interval, date_start, date_end, [date_start], [%Ecto.Date{year: 3000, month: 1, day: 1}])
+      assert_stream_of_dates(frequency, interval, date_start, date_end, [date_start], [%Ecto.Date{year: 2000, month: 1, day: 1}, %Ecto.Date{year: 3000, month: 1, day: 1}])
     end
 
     test "should generate a stream of dates for every day" do
-      frequency  = :daily
-      interval   = 1
-      date_start = %Ecto.Date{year: 2000, month: 1, day: 1}
-      date_end   = %Ecto.Date{year: 2000, month: 1, day: 3}
-      dates      = [
+      frequency      = :daily
+      interval       = 1
+      date_start     = %Ecto.Date{year: 2000, month: 1, day: 1}
+      date_end       = %Ecto.Date{year: 2000, month: 1, day: 3}
+      excluded_dates = [
         %Ecto.Date{year: 2000, month: 1, day: 1},
         %Ecto.Date{year: 2000, month: 1, day: 2},
         %Ecto.Date{year: 2000, month: 1, day: 3},
       ]
 
-      assert_stream_of_dates(frequency, interval, date_start, date_end, dates)
+      assert_stream_of_dates(frequency, interval, date_start, date_end, [], excluded_dates)
     end
 
     test "should generate a stream of dates for every second week" do
@@ -60,12 +63,11 @@ defmodule RecurringEvents.Event.Repetition.FrequencyTest do
       date_start = %Ecto.Date{year: 2000, month: 1, day:  1}
       date_end   = %Ecto.Date{year: 2000, month: 1, day: 31}
       dates      = [
-        %Ecto.Date{year: 2000, month: 1, day:  1},
         %Ecto.Date{year: 2000, month: 1, day: 15},
         %Ecto.Date{year: 2000, month: 1, day: 29},
       ]
 
-      assert_stream_of_dates(frequency, interval, date_start, date_end, dates)
+      assert_stream_of_dates(frequency, interval, date_start, date_end, dates, [%Ecto.Date{year: 2000, month: 1, day:  1}])
     end
 
     test "should generate a stream of dates for every third month" do
@@ -77,10 +79,9 @@ defmodule RecurringEvents.Event.Repetition.FrequencyTest do
         %Ecto.Date{year: 2000, month:  1, day: 1},
         %Ecto.Date{year: 2000, month:  4, day: 1},
         %Ecto.Date{year: 2000, month:  7, day: 1},
-        %Ecto.Date{year: 2000, month: 10, day: 1},
       ]
 
-      assert_stream_of_dates(frequency, interval, date_start, date_end, dates)
+      assert_stream_of_dates(frequency, interval, date_start, date_end, dates, [%Ecto.Date{year: 2000, month: 10, day: 1}])
     end
 
     test "should generate a stream of dates for every fourth year" do
@@ -92,15 +93,14 @@ defmodule RecurringEvents.Event.Repetition.FrequencyTest do
         %Ecto.Date{year: 2000, month: 1, day: 1},
         %Ecto.Date{year: 2004, month: 1, day: 1},
         %Ecto.Date{year: 2008, month: 1, day: 1},
-        %Ecto.Date{year: 2012, month: 1, day: 1},
         %Ecto.Date{year: 2016, month: 1, day: 1},
         %Ecto.Date{year: 2020, month: 1, day: 1},
       ]
 
-      assert_stream_of_dates(frequency, interval, date_start, date_end, dates)
+      assert_stream_of_dates(frequency, interval, date_start, date_end, dates, [%Ecto.Date{year: 2012, month: 1, day: 1}])
     end
 
-    defp assert_stream_of_dates(frequency, interval, date_start, date_end, dates),
-      do: assert dates == frequency |> Frequency.stream_of_dates(interval, date_start, date_end) |> Enum.to_list
+    defp assert_stream_of_dates(frequency, interval, date_start, date_end, dates, exclusions),
+      do: assert dates == frequency |> Frequency.stream_of_dates(interval, date_start, date_end, exclusions) |> Enum.to_list
   end
 end
