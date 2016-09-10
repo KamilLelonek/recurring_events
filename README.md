@@ -10,7 +10,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
     ```elixir
     def deps do
-      [{:recurring_events, "~> 0.1.0"}]
+      [{:recurring_events, "~> 0.x"}]
     end
     ```
 
@@ -28,6 +28,8 @@ To get and compile all dependencies run:
 
     mix do deps.get, deps.compile
 
+You can do that each time you pull the repository.
+
 ## Database
 
 Firstly, you need to create a database. To do that, execute:
@@ -37,3 +39,7 @@ Firstly, you need to create a database. To do that, execute:
 Later on, you may wanna run all migrations. This can be done by:
 
     mix ecto.migrate
+
+In case of any problems, you can recreate the entire database:
+
+    mix ecto.reset
