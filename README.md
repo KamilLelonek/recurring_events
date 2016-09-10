@@ -51,3 +51,11 @@ To test the repository you can run:
     mix test [--stale]
 
 This will run the entire test suite and report prospective errors. When you add ` --stale` flag, you will make sure that only changed tests will be run.
+
+## Linting
+
+There's [`credo`](https://github.com/rrrene/credo) linting mechanizm implemented. To check design, readability or refactoring opportunities you can run:
+
+     mix credo
+
+This will report all suggested changes to be done.
