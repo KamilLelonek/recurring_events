@@ -43,3 +43,11 @@ Later on, you may wanna run all migrations. This can be done by:
 In case of any problems, you can recreate the entire database:
 
     mix ecto.reset
+
+## Testing
+
+To test the repository you can run:
+
+    mix test [--stale]
+
+This will run the entire test suite and report prospective errors. When you add ` --stale` flag, you will make sure that only changed tests will be run.
