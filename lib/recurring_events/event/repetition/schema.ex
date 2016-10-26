@@ -7,8 +7,10 @@ defmodule RecurringEvents.Event.Repetition do
   schema "repetitions" do
     field :frequency,  Repetition.Frequency
     field :interval,   :integer
-    field :starts_at,  Ecto.DateTime
-    field :ends_at,    Ecto.DateTime
+    field :start_date, Ecto.Date
+    field :end_date,   Ecto.Date
+    field :start_time, Ecto.Time
+    field :end_time,   Ecto.Time
     field :exclusions, {:array, Ecto.Date}, default: []
 
     belongs_to :event, Event
@@ -16,6 +18,6 @@ defmodule RecurringEvents.Event.Repetition do
     timestamps()
   end
 
-  def stream(%Repetition{frequency: frequency, interval: interval, starts_at: starts_at, ends_at: ends_at, exclusions: exclusions}),
-    do: Repetition.Frequency.stream_of_dates(frequency, interval, starts_at, ends_at, exclusions)
+  def stream(%Repetition{frequency: frequency, interval: interval, start_date: start_date, end_date: end_date, exclusions: exclusions}),
+    do: Repetition.Frequency.stream_of_dates(frequency, interval, start_date, end_date, exclusions)
 end

@@ -7,8 +7,10 @@ defmodule RecurringEvents.Repo.Migrations.CreateRepetitions do
 
       add :frequency,  :string
       add :interval,   :integer
-      add :starts_at,  :datetime
-      add :ends_at,    :datetime
+      add :start_date,  :date
+      add :end_date,    :date
+      add :start_time,  :time
+      add :end_time,    :time
       add :exclusions, {:array, :date}
 
       add :event_id, references(:events, type: :uuid, on_delete: :delete_all)
