@@ -1,12 +1,12 @@
-defmodule RecurringEvents.MutatorTest do
+defmodule RecurringEvents.ChangesetTest do
   use ExUnit.Case, async: true
 
   alias RecurringEvents.Event.Repetition
 
   @repetition %Repetition{interval: 1}
 
-  defmodule TestMutator do
-    use RecurringEvents.Mutator
+  defmodule TestChangeset do
+    use RecurringEvents.Changeset
   end
 
   test "should fetch data fields from a Changeset" do
@@ -15,15 +15,15 @@ defmodule RecurringEvents.MutatorTest do
   end
 
   test "should fetch changed fields from a Changeset" do
-    assert [:once] = TestMutator.fetch_fields(repetition_with_frequency(), [:frequency])
+    assert [:once] = TestChangeset.fetch_fields(repetition_with_frequency(), [:frequency])
   end
 
   test "should fetch all fields from a Changeset" do
-    assert [:once, 1, nil] = TestMutator.fetch_fields(repetition_with_frequency(), [:frequency, :interval, :x])
+    assert [:once, 1, nil] = TestChangeset.fetch_fields(repetition_with_frequency(), [:frequency, :interval, :x])
   end
 
   defp fetch_fields_from_repetition(fields),
-    do: @repetition |> Ecto.Changeset.change() |> TestMutator.fetch_fields(fields)
+    do: @repetition |> Ecto.Changeset.change() |> TestChangeset.fetch_fields(fields)
 
   defp repetition_with_frequency() do
     @repetition

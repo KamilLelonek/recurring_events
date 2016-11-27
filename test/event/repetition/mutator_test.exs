@@ -1,7 +1,7 @@
-defmodule RecurringEvents.Event.Repetition.MutatorTest do
+defmodule RecurringEvents.Event.Repetition.ChangesetTest do
   use ExUnit.Case, async: true
 
-  alias RecurringEvents.Event.Repetition.Mutator
+  alias RecurringEvents.Event.Repetition.Changeset
 
   @repetition %{
     frequency:  :daily,
@@ -52,7 +52,7 @@ defmodule RecurringEvents.Event.Repetition.MutatorTest do
     (
       @repetition
       |> Map.merge(params)
-      |> Mutator.changeset()
+      |> Changeset.build()
     ).errors
   end
 end

@@ -1,4 +1,4 @@
-defmodule RecurringEvents.Mutator do
+defmodule RecurringEvents.Changeset do
   defmacro __using__(_) do
     quote do
       import Ecto
@@ -6,15 +6,15 @@ defmodule RecurringEvents.Mutator do
 
       alias RecurringEvents.Repo
 
-      def fetch_fields(changeset, fields) do
+      def fetch_fields(build, fields) do
         Enum.map(
           fields,
-          &fetch_single_field(&1, changeset)
+          &fetch_single_field(&1, build)
         )
       end
 
-      defp fetch_single_field(field_to_fetch, changeset) do
-        changeset
+      defp fetch_single_field(field_to_fetch, build) do
+        build
         |> fetch_field(field_to_fetch)
         |> single_field()
       end
