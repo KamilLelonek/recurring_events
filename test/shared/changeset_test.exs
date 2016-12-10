@@ -1,5 +1,5 @@
 defmodule RecurringEvents.ChangesetTest do
-  use ExUnit.Case, async: true
+  use RecurringEvents.TestCase, async: true
 
   alias RecurringEvents.Event.Repetition
 
