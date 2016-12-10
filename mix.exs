@@ -25,6 +25,7 @@ defmodule RecurringEvents.Mixfile do
       {:ecto,        "~> 2.0"},
       {:postgrex,    "~> 0.11"},
       {:exnumerator, "~> 1.2"},
+      {:ex_machina,  "~> 1.0", only: :test},
       {:credo,       "~> 0.4", only: [:dev, :test]},
     ]
   end
