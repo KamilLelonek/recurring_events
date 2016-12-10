@@ -3,14 +3,7 @@ defmodule RecurringEvents.Event.Repetition.ChangesetTest do
 
   alias RecurringEvents.Event.Repetition.Changeset
 
-  @repetition %{
-    frequency:  :daily,
-    interval:   2,
-    start_date: %Ecto.Date{day: 1, month: 1, year: 2000},
-    end_date:   %Ecto.Date{day: 1, month: 2, year: 2000},
-    start_time: %Ecto.Time{hour: 1, min: 0, sec: 0},
-    end_time:   %Ecto.Time{hour: 2, min: 0, sec: 0}
-  }
+  @repetition RecurringEvents.Test.Factory.params_for(:repetition)
 
   test "should pass for a valid rapetition" do
     assert [] == errors_on_create(@repetition)
