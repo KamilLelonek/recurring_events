@@ -3,6 +3,8 @@ defmodule RecurringEvents.TestCase do
 
   using do
     quote do
+      alias RecurringEvents.Repo
+
       import RecurringEvents.{TestCase, Test.Factory}
     end
   end
