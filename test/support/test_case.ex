@@ -9,10 +9,10 @@ defmodule RecurringEvents.TestCase do
 
   def errors_on_create(params, schema, changeset) do
     params = Enum.into(params, %{})
-    (
-      schema
-      |> Map.merge(params)
-      |> changeset.build()
-    ).errors
+
+    schema
+    |> Map.merge(params)
+    |> changeset.build()
+    |> Ecto.Changeset.traverse_errors(&(&1))
   end
 end
