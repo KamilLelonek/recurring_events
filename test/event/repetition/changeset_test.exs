@@ -3,7 +3,7 @@ defmodule RecurringEvents.Event.Repetition.ChangesetTest do
 
   alias RecurringEvents.Event.Repetition
 
-  @repetition RecurringEvents.Test.Factory.params_for(:repetition)
+  @repetition params_for(:repetition)
 
   test "should pass for a valid rapetition" do
     assert [] == errors_on_create(@repetition)
