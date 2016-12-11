@@ -1,7 +1,7 @@
 defmodule RecurringEvents.Event.Repetition.ChangesetTest do
   use RecurringEvents.TestCase, async: true
 
-  alias RecurringEvents.Event.Repetition.Changeset
+  alias RecurringEvents.Event.Repetition
 
   @repetition RecurringEvents.Test.Factory.params_for(:repetition)
 
@@ -11,7 +11,7 @@ defmodule RecurringEvents.Event.Repetition.ChangesetTest do
 
   describe "frequency" do
     test "should fail for invalid frequency values" do
-      assert {:frequency, {"is invalid", [type: RecurringEvents.Event.Repetition.Frequency]}} in errors_on_create(frequency: :randomly)
+      assert {:frequency, {"is invalid", [type: Repetition.Frequency]}} in errors_on_create(frequency: :randomly)
       assert {:frequency, {"must occur only :once for :interval 0", []}} in errors_on_create(interval: 0)
     end
   end
