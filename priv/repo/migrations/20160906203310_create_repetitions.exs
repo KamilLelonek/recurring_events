@@ -14,6 +14,8 @@ defmodule RecurringEvents.Repo.Migrations.CreateRepetitions do
       add :exclusions, {:array, :date}
 
       add :event_id, references(:events, type: :uuid, on_delete: :delete_all)
+
+      timestamps()
     end
 
     create index(:repetitions, [:event_id])
