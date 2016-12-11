@@ -1,4 +1,4 @@
-defmodule RecurringEvents.Event.SchemaTest do
+defmodule RecurringEvents.Event.ChangesetTest do
   use RecurringEvents.TestCase, async: true
 
   alias RecurringEvents.Event
