@@ -40,12 +40,6 @@ defmodule RecurringEvents.Event.Repetition.ChangesetTest do
     end
   end
 
-  defp errors_on_create(params) do
-    params = Enum.into(params, %{})
-    (
-      @repetition
-      |> Map.merge(params)
-      |> Changeset.build()
-    ).errors
-  end
+  defp errors_on_create(params),
+    do: errors_on_create(params, @repetition, Repetition.Changeset)
 end
