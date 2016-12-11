@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/KamilLelonek/recurring_events.svg?branch=master)](https://travis-ci.org/KamilLelonek/recurring_events)
 
+This is an `Elixir`/`Ecto` library for storing recurring events in your database.
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
@@ -21,6 +23,52 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
       [applications: [:recurring_events]]
     end
     ```
+    
+## Usage
+
+`Event` stores the following fields:
+
+```elixir
+@type t :: %RecurringEvents.Event{
+  name:        String.t(),
+  repetitions: nonempty_list(RecurringEvents.Event.Repetition.t())
+}
+```
+
+`Repetition` itself is presented as:
+
+```elixir
+@type t :: %RecurringEvents.Event.Repetition{
+  frequency:  RecurringEvents.Event.Repetition.Frequency.t(),
+  interval:   non_neg_integer(),
+  start_date: Ecto.Date.t(),
+  end_date:   Ecto.Date.t(),
+  start_time: Ecto.Time.t(),
+  end_time:   Ecto.Time.t(),
+  exclusions: list(Ecto.Date.t())
+}
+```
+
+`Frequency` is an enumerable type:
+
+```elixir
+@type t :: %RecurringEvents.Event.Repetition.Frequency{
+  value: Enum.t()
+}
+```
+
+with predefined values:
+
+```elixir
+[
+  :once,
+  :daily,
+  :weekly,
+  :monthly,
+  :yearly
+]
+```
+
 
 ## Development
 
