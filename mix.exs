@@ -23,11 +23,11 @@ defmodule RecurringEvents.Mixfile do
 
   defp deps() do
     [
-      {:ecto,        "~> 2.0"},
-      {:postgrex,    "~> 0.11"},
+      {:ecto,        "~> 2.1"},
+      {:postgrex,    "~> 0.13"},
       {:exnumerator, "~> 1.2"},
       {:ex_machina,  "~> 1.0", only: :test},
-      {:credo,       "~> 0.4", only: [:dev, :test]},
+      {:credo,       "~> 0.5", only: [:dev, :test]},
     ]
   end
 
