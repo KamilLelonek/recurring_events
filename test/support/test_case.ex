@@ -9,6 +9,10 @@ defmodule RecurringEvents.TestCase do
     end
   end
 
+  setup(_) do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(RecurringEvents.Repo)
+  end
+
   def errors_on_create(params, schema, changeset) do
     params = Enum.into(params, %{})
 
