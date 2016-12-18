@@ -11,11 +11,11 @@ defmodule RecurringEvents.Event.ChangesetTest do
 
   describe "name" do
     test "should fail for missing name" do
-      assert {:name, [{"can't be blank", []}]} in errors_on_create(name: nil)
+      assert {:name, [{"can't be blank", [validation: :required]}]} in errors_on_create(name: nil)
     end
 
     test "should fail for an empty name" do
-      assert {:name, [{"can't be blank", []}]} in errors_on_create(name: "")
+      assert {:name, [{"can't be blank", [validation: :required]}]} in errors_on_create(name: "")
     end
   end
 
@@ -25,7 +25,7 @@ defmodule RecurringEvents.Event.ChangesetTest do
     end
 
     test "should fail for an empty repetition" do
-      assert {:repetitions, [{"can't be blank", []}]} in errors_on_create(repetitions: [])
+      assert {:repetitions, [{"can't be blank", [validation: :required]}]} in errors_on_create(repetitions: [])
     end
 
     test "should fail for an invalid repetition" do

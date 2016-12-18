@@ -11,14 +11,14 @@ defmodule RecurringEvents.Event.Repetition.ChangesetTest do
 
   describe "frequency" do
     test "should fail for invalid frequency values" do
-      assert {:frequency, [{"is invalid", [type: Repetition.Frequency]}]} in errors_on_create(frequency: :randomly)
+      assert {:frequency, [{"is invalid", [type: Repetition.Frequency, validation: :cast]}]} in errors_on_create(frequency: :randomly)
       assert {:frequency, [{"must occur only :once for :interval 0", []}]} in errors_on_create(interval: 0)
     end
   end
 
   describe "interval" do
     test "should fail for an invalid frequency and interval" do
-      assert {:interval, [{"must be greater than or equal to %{number}", [number: 0]}]} in errors_on_create(interval: -1)
+      assert {:interval, [{"must be greater than or equal to %{number}", [validation: :number, number: 0]}]} in errors_on_create(interval: -1)
       assert {:interval, [{"must be 0 for frequency :once", []}]} in errors_on_create(frequency: :once)
     end
   end

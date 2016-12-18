@@ -16,7 +16,7 @@ defmodule RecurringEvents.Event.MutatorTest do
     test "should not create a valid event" do
       {:error, %Ecto.Changeset{errors: errors}} = Event.Mutator.create(%{@event | name: nil})
 
-      assert {:name, {"can't be blank", []}} in errors
+      assert {:name, {"can't be blank", [validation: :required]}} in errors
     end
   end
 
