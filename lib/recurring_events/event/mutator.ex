@@ -1,7 +1,7 @@
 defmodule RecurringEvents.Event.Mutator do
-  import Ecto.Query
+  use RecurringEvents.Mutator
 
-  alias RecurringEvents.{Event, Repo}
+  alias RecurringEvents.Event
 
   def create(params) do
     params
