@@ -2,6 +2,7 @@ defmodule RecurringEvents.Event.Mutator do
   use RecurringEvents.Mutator
 
   alias RecurringEvents.Event
+  alias RecurringEvents.Event.Queries
 
   def create(params) do
     params
@@ -11,10 +12,7 @@ defmodule RecurringEvents.Event.Mutator do
 
   def delete(id) do
     id
-    |> event_by_id_query()
+    |> Queries.by_id()
     |> Repo.delete_all()
   end
-
-  defp event_by_id_query(id),
-    do: from e in Event, where: e.id == ^id
 end
