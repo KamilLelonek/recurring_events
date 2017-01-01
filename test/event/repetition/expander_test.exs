@@ -1,4 +1,4 @@
-defmodule RecurringEvents.Event.Repetition.SchemaTest do
+defmodule RecurringEvents.Event.Repetition.ExpanderTest do
   use RecurringEvents.TestCase, async: true
 
   alias RecurringEvents.Event.Repetition
@@ -18,6 +18,6 @@ defmodule RecurringEvents.Event.Repetition.SchemaTest do
       %Ecto.Date{year: 2000, month: 1, day: 1},
       %Ecto.Date{year: 2002, month: 1, day: 1},
       %Ecto.Date{year: 2003, month: 1, day: 1},
-      ] == repetition |> Repetition.stream() |> Enum.to_list()
+      ] == repetition |> Repetition.Expander.stream() |> Enum.to_list()
   end
 end
