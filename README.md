@@ -23,8 +23,10 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
       [applications: [:recurring_events]]
     end
     ```
-    
+
 ## Usage
+
+### Models
 
 `Event` stores the following fields:
 
@@ -69,6 +71,16 @@ with predefined values:
 ]
 ```
 
+`Occurence` is an expanded Event based on its repetition. It's a particular instance of a repeating Event which happens at a specific time and date.
+
+```elixir
+@type t :: %RecurringEvents.Event.Repetition.Occurence{
+  date:          Ecto.Date.t(),
+  time_start:    Ecto.Time.t(),
+  time_end:      Ecto.Time.t(),
+  repetition_id: Ecto.UUID.t(),
+}
+```
 
 ## Development
 
