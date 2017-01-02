@@ -28,7 +28,7 @@ defmodule RecurringEvents.Event.Repetition.Mutator do
   defp maybe_exclude(false, changeset, repetition, date) do
     repetition
     |> Repetition.Expander.stream()
-    |> Enum.any?(&(&1 == date))
+    |> Enum.any?(&(&1.date == date))
     |> exclude_if_takes_place(changeset, repetition, date)
   end
 
