@@ -75,10 +75,11 @@ with predefined values:
 
 ```elixir
 @type t :: %RecurringEvents.Event.Repetition.Occurence{
+  event_id:      Ecto.UUID.t(),
+  repetition_id: Ecto.UUID.t(),
   date:          Ecto.Date.t(),
   time_start:    Ecto.Time.t(),
   time_end:      Ecto.Time.t(),
-  repetition_id: Ecto.UUID.t(),
 }
 ```
 
