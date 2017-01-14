@@ -1,4 +1,3 @@
-
 defmodule RecurringEvents.Event.MutatorTest do
   use RecurringEvents.TestCase, async: true
 
