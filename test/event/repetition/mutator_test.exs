@@ -13,7 +13,7 @@ defmodule RecurringEvents.Event.Repetition.MutatorTest do
 
   describe "exclude" do
     test "should exclude a valid date", %{id: id} do
-      {:ok, %{exclusions: [excluded_date]}} = Repetition.Mutator.exclude(id, @date_to_exclude)
+      {:ok, %{exclusions: [_, excluded_date]}} = Repetition.Mutator.exclude(id, @date_to_exclude)
 
       assert excluded_date == Ecto.Date.cast!(@date_to_exclude)
     end
@@ -25,7 +25,7 @@ defmodule RecurringEvents.Event.Repetition.MutatorTest do
     end
 
     test "should not exclude an already excluded date", %{id: id} do
-      {:ok, %{exclusions: [excluded_date]}} = Repetition.Mutator.exclude(id, @date_to_exclude)
+      {:ok, %{exclusions: [excluded_date, _]}} = Repetition.Mutator.exclude(id, @date_to_exclude)
 
       refute_excluded(id, excluded_date, "The given date #{excluded_date} is already excluded.")
     end
