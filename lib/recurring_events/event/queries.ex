@@ -4,5 +4,8 @@ defmodule RecurringEvents.Event.Queries do
   alias RecurringEvents.Event
 
   def by_id(id),
-    do: from e in Event, where: e.id == ^id
+    do: from Event, where: [id: ^id]
+
+  def by_id_with_associations(id),
+    do: from by_id(id), preload: [:repetitions]
 end
