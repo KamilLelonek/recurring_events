@@ -24,6 +24,6 @@ defmodule RecurringEvents.Event.ExpanderTest do
         time_start:    %Ecto.Time{hour: 0, min: 0, sec: 0},
         time_end:      %Ecto.Time{hour: 1, min: 0, sec: 0},
       },
-    ] == repetitions |> Enum.to_list()
+    ] == repetitions
   end
 end

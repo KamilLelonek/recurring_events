@@ -8,4 +8,7 @@ defmodule RecurringEvents.Event.Queries do
 
   def by_id_with_associations(id),
     do: from by_id(id), preload: [:repetitions]
+
+  def all_with_associations(),
+    do: from Event, preload: [:repetitions]
 end
