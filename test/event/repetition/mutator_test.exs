@@ -3,7 +3,7 @@ defmodule RecurringEvents.Event.Repetition.MutatorTest do
 
   alias RecurringEvents.Event.Repetition
 
-  @date_to_exclude "2000-01-01"
+  @date_to_exclude "2020-01-01"
 
   setup do
     %{id: id} = insert(:repetition)
@@ -31,7 +31,7 @@ defmodule RecurringEvents.Event.Repetition.MutatorTest do
     end
 
     test "should not exclude a nonexistent occurence", %{id: id} do
-      date_to_exclude = "2000-01-02"
+      date_to_exclude = "2020-01-02"
 
       refute_excluded(id, date_to_exclude, "The Event does not oocur at #{date_to_exclude}.")
     end
