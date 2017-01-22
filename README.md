@@ -24,6 +24,8 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
     end
     ```
 
+    **You don't have to do that in `Elixir >= 1.4`.**
+
 ## Usage
 
 ### Models
