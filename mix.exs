@@ -6,7 +6,7 @@ defmodule RecurringEvents.Mixfile do
       app:             :recurring_events,
       build_embedded:  Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      elixir:          "~> 1.3",
+      elixir:          "~> 1.4",
       version:         "0.1.0",
       deps:            deps(),
       aliases:         aliases(),
@@ -14,10 +14,10 @@ defmodule RecurringEvents.Mixfile do
     ]
   end
 
-  def application do
+  def application() do
     [
-      mod:          {RecurringEvents, []},
-      applications: apps(),
+      mod:                {RecurringEvents, []},
+      extra_applications: [:logger],
     ]
   end
 
@@ -26,18 +26,9 @@ defmodule RecurringEvents.Mixfile do
       {:ecto,        "~> 2.1"},
       {:postgrex,    "~> 0.13"},
       {:exnumerator, "~> 1.2"},
-      {:ex_machina,  "~> 1.0", only: :test},
-      {:credo,       "~> 0.5", only: [:dev, :test]},
+      {:ex_machina,  "~> 1.0", runtime: false},
+      {:credo,       "~> 0.5", runtime: false},
     ]
-  end
-
-  defp apps() do
-    ~w(
-      logger
-      ecto
-      postgrex
-      exnumerator
-    )a
   end
 
   defp aliases() do
