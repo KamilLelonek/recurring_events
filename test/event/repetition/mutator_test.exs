@@ -30,7 +30,7 @@ defmodule RecurringEvents.Event.Repetition.MutatorTest do
       refute_excluded(id, excluded_date, "The given date #{excluded_date} is already excluded.")
     end
 
-    test "should not exclude a nonexistent occurence", %{id: id} do
+    test "should not exclude a nonexistent occurrence", %{id: id} do
       date_to_exclude = "2020-01-02"
 
       refute_excluded(id, date_to_exclude, "The Event does not oocur at #{date_to_exclude}.")

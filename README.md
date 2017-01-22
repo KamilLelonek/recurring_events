@@ -71,10 +71,10 @@ with predefined values:
 ]
 ```
 
-`Occurence` is an expanded Event based on its repetition. It's a particular instance of a repeating Event which happens at a specific time and date.
+`Occurrence` is an expanded Event based on its repetition. It's a particular instance of a repeating Event which happens at a specific time and date.
 
 ```elixir
-@type t :: %RecurringEvents.Event.Repetition.Occurence{
+@type t :: %RecurringEvents.Event.Repetition.Occurrence{
   event_id:      Ecto.UUID.t(),
   repetition_id: Ecto.UUID.t(),
   date:          Ecto.Date.t(),
