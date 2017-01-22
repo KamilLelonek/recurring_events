@@ -13,6 +13,12 @@ defmodule RecurringEvents.Event.Repetition.Mutator do
     |> Repo.update()
   end
 
+  def delete(id) do
+    id
+    |> Repetition.Queries.by_id()
+    |> Repo.delete_all()
+  end
+
   defp exclude_date(%Repetition{frequency: :once}, changeset, _date),
     do: Ecto.Changeset.add_error(changeset, :frequency, "Must be other than :once. Only a recurring Repetition can be excluded.")
 

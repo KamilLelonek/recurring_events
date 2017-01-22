@@ -46,4 +46,14 @@ defmodule RecurringEvents.Event.Repetition.MutatorTest do
       assert {error, {message, []}} in errors
     end
   end
+
+  describe "delete" do
+    test "should remove a single Repetition", %{id: id} do
+      {1, nil} = Repetition.Mutator.delete(id)
+    end
+
+    test "should not remove a Repetition" do
+      {0, nil} = Repetition.Mutator.delete(Ecto.UUID.generate())
+    end
+  end
 end
