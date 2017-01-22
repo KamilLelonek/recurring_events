@@ -6,7 +6,7 @@ defmodule RecurringEvents.Event.Repetition.ExpanderTest do
   @event_id Ecto.UUID.generate()
 
   test "should generate stream of dates" do
-    repetition = insert(:repetition)
+    repetition = build(:repetition)
 
     assert [
       %Repetition.Occurence{
