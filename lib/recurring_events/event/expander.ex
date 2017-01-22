@@ -3,8 +3,11 @@ defmodule RecurringEvents.Event.Expander do
 
   @number_of_occurences 30
 
-  def run(%{id: id, repetitions: repetitions} = event),
-    do: %Event{event | repetitions: expand_repetitions(repetitions, id)}
+  def run(%{id: id, repetitions: repetitions} = event) do
+    event
+    |> Map.put(:occurences, expand_repetitions(repetitions, id))
+    |> Map.delete(:repetitions)
+  end
 
   defp expand_repetitions(repetitions, event_id) do
     repetitions

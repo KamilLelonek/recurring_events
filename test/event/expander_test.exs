@@ -7,7 +7,7 @@ defmodule RecurringEvents.Event.ExpanderTest do
   test "should expand all Events" do
     %{repetitions: [%{id: repetition_id}]} = event = build(:event)
 
-    %{repetitions: repetitions} = Event.Expander.run(event)
+    %{occurences: repetitions} = Event.Expander.run(event)
 
     assert [
       %Event.Repetition.Occurence{
@@ -31,7 +31,7 @@ defmodule RecurringEvents.Event.ExpanderTest do
     repetition = build(:repetition, %{start_date: %Ecto.Date{year: 2000, month: 1, day: 1}})
     event      = build(:event, repetitions: [repetition])
 
-    %{repetitions: [%{date: first_repetition_date} | _]} = Event.Expander.run(event)
+    %{occurences: [%{date: first_repetition_date} | _]} = Event.Expander.run(event)
 
     refute Ecto.Date.compare(first_repetition_date, Ecto.Date.utc) == :lt
   end
@@ -40,7 +40,7 @@ defmodule RecurringEvents.Event.ExpanderTest do
     repetition = build(:repetition, %{end_date: %Ecto.Date{year: 3000, month: 1, day: 1}})
     event      = build(:event, repetitions: [repetition])
 
-    %{repetitions: repetitions} = Event.Expander.run(event)
+    %{occurences: repetitions} = Event.Expander.run(event)
 
     assert 30 = Enum.count(repetitions)
   end
