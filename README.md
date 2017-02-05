@@ -85,6 +85,33 @@ with predefined values:
 }
 ```
 
+### Structure
+
+The project has the following components:
+
+1. `Loader` - loads records from a repository
+2. `Mutator` - stores and updates records in a repository
+3. `Changeset` - prepares and validates params for records to be stored in a repoistory
+4. `Expander` - expands records based on their repetitions
+5. `Schema` - definition of a particular record
+
+### Operations
+
+The Root Aggregate of the library is `Event`. You can do the following thing with it:
+
+- create
+- read / load / query:
+  - all
+  - one by `ID`
+- delete by `ID`
+- update
+	-  change a name
+	-  update a `Repetition`:
+	  - change start date
+	  - change end date
+	  - exclude a date
+	-  remove an entire `Repetition`
+
 ## Development
 
 To get and compile all dependencies run:
