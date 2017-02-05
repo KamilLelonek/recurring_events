@@ -97,20 +97,23 @@ The project has the following components:
 
 ### Operations
 
-The Root Aggregate of the library is `Event`. You can do the following thing with it:
+You can do the following thing with `Event`:
 
 - create
 - read / load / query:
-  - all
-  - one by `ID`
+  - all: expanded and collapsed
+  - one by `ID`: expanded and collapsed
 - delete by `ID`
-- update
-	-  change a name
-	-  update a `Repetition`:
-	  - change start date
-	  - change end date
-	  - exclude a date
-	-  remove an entire `Repetition`
+- update (change a name)
+
+On `Repetition` you can do the following:
+
+- update:
+  - change start date / time
+  - change end date / time
+  - exclude a date
+  - modify frequency / interval
+- delete by `ID`
 
 ## Development
 
