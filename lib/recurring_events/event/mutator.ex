@@ -2,7 +2,6 @@ defmodule RecurringEvents.Event.Mutator do
   use RecurringEvents.Mutator
 
   alias RecurringEvents.Event
-  alias RecurringEvents.Event.Queries
 
   def create(params) do
     params
@@ -10,9 +9,21 @@ defmodule RecurringEvents.Event.Mutator do
     |> Repo.insert()
   end
 
+  def update(id, name) do
+    id
+    |> Event.Queries.by_id()
+    |> Repo.update_all(update_fields(name), update_opts())
+  end
+
   def delete(id) do
     id
-    |> Queries.by_id()
+    |> Event.Queries.by_id()
     |> Repo.delete_all()
   end
+
+  defp update_fields(name),
+    do: [set: [name: name]]
+
+  defp update_opts,
+    do: [returning: ~w(id name)a]
 end
