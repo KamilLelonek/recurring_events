@@ -3,6 +3,19 @@ defmodule RecurringEvents.Event.Repetition.Mutator do
 
   alias RecurringEvents.Event.Repetition
 
+  def delete(id) do
+    id
+    |> Repetition.Queries.by_id()
+    |> Repo.delete_all()
+  end
+
+  def update(id, params) do
+    id
+    |> Repetition.Loader.by_id!()
+    |> Repetition.Changeset.build(params)
+    |> Repo.update()
+  end
+
   def exclude(id, date) do
     ecto_date  = Ecto.Date.cast(date)
     repetition = Repetition.Loader.by_id!(id)
@@ -11,12 +24,6 @@ defmodule RecurringEvents.Event.Repetition.Mutator do
     repetition
     |> exclude_date(changeset, ecto_date)
     |> Repo.update()
-  end
-
-  def delete(id) do
-    id
-    |> Repetition.Queries.by_id()
-    |> Repo.delete_all()
   end
 
   defp exclude_date(%Repetition{frequency: :once}, changeset, _date),
